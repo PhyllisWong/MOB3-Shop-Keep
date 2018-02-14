@@ -13,6 +13,7 @@ class ShopsViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     let coreDataStack = CoreDataStack.instance
     
+    // Get the names of all employees in a shop and display them under the Shop Name
     lazy var fetchedResultsController: NSFetchedResultsController<Shop> = {
         // Remember to specify type: *CoreData Bug*
         // Initialize Fetch Request
@@ -32,7 +33,6 @@ class ShopsViewController: UIViewController {
         
         // Configure Fetched Results Controller
         fetchedResultsController.delegate = self
-        
         return fetchedResultsController
     }()
     
