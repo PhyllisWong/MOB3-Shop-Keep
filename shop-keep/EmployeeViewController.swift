@@ -21,6 +21,14 @@ class EmployeeViewController: UIViewController {
 //        nav.navigationItem.largeTitleDisplayMode = .never
         tableView.dataSource = self
     }
+    
+    
+    
+    func pressedAdd() {
+        
+        print(shop?.employees!)
+        print("someShit")
+    }
 }
 
 extension EmployeeViewController: UITableViewDataSource {
@@ -47,3 +55,7 @@ extension EmployeeViewController: UITableViewDataSource {
         return cell
     }
 }
+
+
+
+
