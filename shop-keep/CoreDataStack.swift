@@ -16,6 +16,7 @@ public final class CoreDataStack {
     
     private lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(
+            // make this name of the xcdatamodeld file
             name: "shop_keep"
         )
         

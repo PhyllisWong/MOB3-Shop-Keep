@@ -30,8 +30,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         grandmas.name = "Grandmas's"
         let teds = Shop(context: saveContext)
         teds.name = "Ted's"
-        let chinese = Shop(context: saveContext)
-        chinese.name = "The Chinese Place"
+        let shanghaiChina = Shop(context: saveContext)
+        shanghaiChina.name = "Shanghai China"
         
         // Create Grandma's Employees
         let peter = Employee(context: saveContext)
@@ -48,8 +48,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // TODO: Change shops to chinese and make manager
         let antoine = Employee(context: saveContext)
         antoine.name = "Antoine"
-        antoine.shop = grandmas
-        antoine.manager = sarah
+        antoine.shop = shanghaiChina
+        antoine.isManager = true
 
         // Create Ted's Employees
         // Ted's Managers

@@ -15,6 +15,8 @@
 		05622BAF20312912006DDB43 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05622BAE20312912006DDB43 /* Assets.xcassets */; };
 		05622BB220312912006DDB43 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05622BB020312912006DDB43 /* LaunchScreen.storyboard */; };
 		05622BBA20312A3C006DDB43 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05622BB920312A3C006DDB43 /* CoreDataStack.swift */; };
+		B974E8F12033E76700152741 /* AddShopController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B974E8F02033E76700152741 /* AddShopController.swift */; };
+		B974E8F32033E7EB00152741 /* AddEmployeeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B974E8F22033E7EB00152741 /* AddEmployeeController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		05622BB120312912006DDB43 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		05622BB320312912006DDB43 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05622BB920312A3C006DDB43 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		B974E8F02033E76700152741 /* AddShopController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddShopController.swift; sourceTree = "<group>"; };
+		B974E8F22033E7EB00152741 /* AddEmployeeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEmployeeController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +67,8 @@
 				05622BA420312912006DDB43 /* AppDelegate.swift */,
 				05622BA620312912006DDB43 /* ShopsViewController.swift */,
 				0529E2E72031624E00317728 /* EmployeeViewController.swift */,
+				B974E8F02033E76700152741 /* AddShopController.swift */,
+				B974E8F22033E7EB00152741 /* AddEmployeeController.swift */,
 				05622BA820312912006DDB43 /* Main.storyboard */,
 				05622BAE20312912006DDB43 /* Assets.xcassets */,
 				05622BB020312912006DDB43 /* LaunchScreen.storyboard */,
@@ -146,7 +152,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				0529E2E82031624E00317728 /* EmployeeViewController.swift in Sources */,
+				B974E8F12033E76700152741 /* AddShopController.swift in Sources */,
 				05622BA720312912006DDB43 /* ShopsViewController.swift in Sources */,
+				B974E8F32033E7EB00152741 /* AddEmployeeController.swift in Sources */,
 				05622BA520312912006DDB43 /* AppDelegate.swift in Sources */,
 				05622BAD20312912006DDB43 /* shop_keep.xcdatamodeld in Sources */,
 				05622BBA20312A3C006DDB43 /* CoreDataStack.swift in Sources */,

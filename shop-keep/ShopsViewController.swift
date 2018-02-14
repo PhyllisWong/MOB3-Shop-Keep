@@ -72,7 +72,7 @@ extension ShopsViewController: UITableViewDataSource {
         
         cell.textLabel?.text = item.name
         
-        // Reduce all employee names to one
+        // Reduce all employee names to one string by concatinating
         cell.detailTextLabel?.text = item
             .employees?
             .reduce("", { (acc, nextEmployee) -> String in
@@ -85,7 +85,7 @@ extension ShopsViewController: UITableViewDataSource {
                 return "Employees: \(name)"
             }
             
-            // If not, return the previous name then the next name
+            // If not, return the previous name with the next name added to the string
             return acc + ", " + name
         })
         
@@ -101,8 +101,10 @@ extension ShopsViewController: NSFetchedResultsControllerDelegate {
         let inventory = fetchedResultsController.object(at: indexPath)
         
         // Delete
+        tableView.deleteRows(at: [indexPath], with: .fade)
         fetchedResultsController.managedObjectContext.delete(inventory)
         try? fetchedResultsController.managedObjectContext.save()
+        tableView.reloadData()
     }
 }
 
@@ -114,7 +116,9 @@ extension ShopsViewController: UITableViewDelegate {
         
         vc.shop = selectedShop
         
-        self.navigationController?
-            .pushViewController(vc, animated: true)
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
+
+
+

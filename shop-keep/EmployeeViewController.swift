@@ -16,7 +16,19 @@ class EmployeeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.largeTitleDisplayMode = .never
+//        var leftBarItem: Array = { () -> [UIBarButtonItem] in
+//            let btnBack = UIButton(type: .custom)
+//            btnBack.frame = kBAR_FRAME
+//            btnBack.addTarget(self, action: #selector(clickOnBackBtn(_:)), for: .touchUpInside)
+//            let item = UIBarButtonItem(customView: btnBack)
+//            item.tag = 3
+//            return [item]
+//        }()
+        
+        let nav = UINavigationController(rootViewController: ShopsViewController())
+//        self.navigationItem.rightBarButtonItem = item1
+        //self.navigationController?.pushViewController(self, animated: true)
+        nav.navigationItem.largeTitleDisplayMode = .never
         tableView.dataSource = self
     }
 }
@@ -39,6 +51,7 @@ extension EmployeeViewController: UITableViewDataSource {
         
         cell.textLabel?.text = employee.name
         
+        // ternary operator, if the boolean is true, will take the left side, if false will take the right side
         cell.detailTextLabel?.text = employee.isManager ? "Manager" : "Managed by: \(employee.manager?.name ?? "")"
         
         return cell
