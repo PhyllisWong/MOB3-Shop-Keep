@@ -12,22 +12,36 @@ class EmployeeViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     var shop: Shop?
+    var employees: [Employee]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //
 //        let nav = UINavigationController(rootViewController: ShopsViewController())
 //        nav.navigationItem.largeTitleDisplayMode = .never
         tableView.dataSource = self
     }
     
-    
-    
-    func pressedAdd() {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
-        print(shop?.employees!)
-        print("someShit")
+//        try? fetchedResultsController.performFetch()
+        tableView.reloadData()
+    }
+    
+    @IBAction func pressedAdd(_ sender: UIBarButtonItem) {
+        // print("someStuff")
+        self.performSegue(withIdentifier: "toAddEmployee", sender: self)
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let identifier = segue.identifier {
+            if identifier == "toAddEmployee" {
+                let addEmployeeVC = segue.destination as! AddEmployeeController
+                addEmployeeVC.shop = self.shop
+            }
+        }
     }
 }
 
@@ -43,7 +57,7 @@ extension EmployeeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ShopCell", for: indexPath)
         
-        guard let employees = shop?.employees?.allObjects as? [Employee]
+        guard let employees = self.shop?.employees?.allObjects as? [Employee]
             else {return cell}
         let employee = employees[indexPath.row]
         

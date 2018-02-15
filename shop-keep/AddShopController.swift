@@ -27,16 +27,16 @@ class AddShopController: UIViewController {
     // Actions
     @IBAction func didPressSave(_ sender: Any) {
         
-        guard let name = shopNameTextField.text else {
-            return
-        }
-        
         let shop = Shop(
             context: coreDataStack.privateContext
         )
         
-        shop.name = name
+        guard let name = shopNameTextField.text else {
+            return
+        }
         
+        shop.name = name
+
         print("\nshop.name: \(String(describing: shop.name))\n")
         
         coreDataStack.saveTo(context: coreDataStack.privateContext)

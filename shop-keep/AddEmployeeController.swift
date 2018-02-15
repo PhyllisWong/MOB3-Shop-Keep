@@ -13,7 +13,6 @@ class AddEmployeeController: UIViewController {
     
     // Outlets
     @IBOutlet weak var employeeNameTextField: UITextField!
-    @IBOutlet weak var managedByTextField: UITextField!
     @IBOutlet weak var managerSegmentControl: UISegmentedControl!
     @IBOutlet weak var managerPicker: UIPickerView!
     
@@ -24,7 +23,8 @@ class AddEmployeeController: UIViewController {
     lazy var employee = Employee(
         context: stack.privateContext
     )
-    var shop: String?
+    
+    var shop: Shop!
     var managers = [String]()
     
     func fetchEmployees() {
@@ -32,22 +32,31 @@ class AddEmployeeController: UIViewController {
         let stack = CoreDataStack.instance
         let fetchRequest: NSFetchRequest<Employee> = NSFetchRequest(entityName: "Employee")
         
+
+        
+        fetchRequest.predicate = NSPredicate(format: "shop == %@", (self.shop)!)
+    
         do {
-            employees = try stack.privateContext.fetch(fetchRequest)
+            employees = try stack.viewContext.fetch(fetchRequest)
             
             for emp in employees! {
-                guard let name = emp.name else {
-                    return
+                if emp.isManager == true {
+                    guard let name = emp.name else {
+                        return
+                    }
+                    self.managers.append(name)
+                    print("name: \(name)")
+                    print("is manager: \(emp.isManager)\n")
                 }
-                self.managers.append(name)
-                print("name: \(name)")
-                print("is manager: \(emp.isManager)\n")
             }
-            
+            // print(self.managers)
 //            return employees
         } catch {
+            print("BAD")
             assert(false, error.localizedDescription)
         }
+        print(self.managers)
+        
     }
     
     // Get the names of all managers in a shop and display them in a UIPicker
@@ -57,8 +66,8 @@ class AddEmployeeController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let allEmployees = self.shop.employees?.allObjects as! [Employee]
         fetchEmployees()
-        print("something???")
     }
 
     // Use picker to sssign manager to eomplyee
@@ -67,12 +76,9 @@ class AddEmployeeController: UIViewController {
             return
         }
         
-
         employee.name = name
-        // employee.isManager = isManager
-        
-        print("\nshop.name: \(String(describing: employee.name))\n")
-        
+
+        self.shop.addToEmployees(employee)
         stack.saveTo(context: stack.privateContext)
         self.navigationController?.popViewController(animated: true)
     }
@@ -81,13 +87,11 @@ class AddEmployeeController: UIViewController {
         if managerSegmentControl.selectedSegmentIndex == 0 {
             // pressed no (not a manager)
             employee.isManager = false
-            
         } else {
             // pressed yes (is a manager, picker should hide)
             employee.isManager = true
         }
     }
-
 }
 
 //extension AddEmployeeController: UIPickerViewDelegate, UIPickerViewDataSource {

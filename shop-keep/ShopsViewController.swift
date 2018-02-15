@@ -26,7 +26,7 @@ class ShopsViewController: UIViewController {
         // Initialize Fetched Results Controller
         let fetchedResultsController = NSFetchedResultsController(
             fetchRequest: fetchRequest,
-            managedObjectContext: self.coreDataStack.viewContext,
+            managedObjectContext: self.coreDataStack.privateContext,
             sectionNameKeyPath: nil,
             cacheName: nil
         )
@@ -100,10 +100,14 @@ extension ShopsViewController: NSFetchedResultsControllerDelegate {
         // Fetch
         let inventory = fetchedResultsController.object(at: indexPath)
         
-        // Delete
-        tableView.deleteRows(at: [indexPath], with: .fade)
+        // MARK: Delete
+        // tells managed object cotext to delete the selected object
         fetchedResultsController.managedObjectContext.delete(inventory)
+        // goes to the data store and performs the action
         try? fetchedResultsController.managedObjectContext.save()
+        // refetches the new data store
+        try? fetchedResultsController.performFetch()
+        // reloads data to the tableview
         tableView.reloadData()
     }
 }
